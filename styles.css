@@ -809,7 +809,7 @@ body:hover .cursor-outline {
 }
 
 /* ===========================
-   Projects/Portfolio Section (FIXED FOR MOBILE)
+   Projects/Portfolio Section (FINAL VERSION)
 =========================== */
 .projects-section {
   background: var(--bg-primary);
@@ -871,17 +871,18 @@ body:hover .cursor-outline {
   transform: translateY(-10px) scale(1.02);
 }
 
-/* FIXED: Proper image container sizing */
+/* Image Container */
 .project-image {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  height: 400px; /* Desktop height */
+  height: 280px;
   cursor: pointer;
   background: var(--bg-secondary);
-  width: 100%; /* Important: Full width */
+  width: 100%;
 }
 
+/* Image Wrapper */
 .project-img-placeholder {
   position: relative;
   width: 100%;
@@ -890,8 +891,7 @@ body:hover .cursor-outline {
   border-radius: inherit;
 }
 
-.project-img-placeholder img,
-.project-img-placeholder svg {
+.project-img-placeholder img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -900,12 +900,11 @@ body:hover .cursor-outline {
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-card:hover .project-img-placeholder img,
-.project-card:hover .project-img-placeholder svg {
-  transform: scale(1.08);
+.project-card:hover .project-img-placeholder img {
+  transform: scale(1.1);
 }
 
-/* Overlay styling */
+/* Overlay */
 .project-overlay {
   position: absolute;
   top: 0;
@@ -922,7 +921,7 @@ body:hover .cursor-outline {
   align-items: flex-end;
   opacity: 0;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 .project-card:hover .project-overlay {
@@ -956,7 +955,7 @@ body:hover .cursor-outline {
 }
 
 .project-details h3 {
-  font-size: 1.75rem;
+  font-size: 1.4rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
   color: white;
@@ -965,10 +964,11 @@ body:hover .cursor-outline {
 }
 
 .project-details p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   opacity: 0.9;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
 }
 
 .project-view {
@@ -979,10 +979,11 @@ body:hover .cursor-outline {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  padding: 0.7rem 1.5rem;
+  padding: 0.65rem 1.3rem;
   background: rgba(249, 115, 22, 0.9);
   border-radius: var(--radius-full);
   box-shadow: 0 4px 16px rgba(249, 115, 22, 0.3);
+  font-size: 0.9rem;
 }
 
 .project-view:hover {
@@ -992,39 +993,100 @@ body:hover .cursor-outline {
   box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
 }
 
+
 /* ===========================
-   MOBILE RESPONSIVE FIXES
+   Projects/Portfolio Section - FULL IMAGE VERSION
 =========================== */
 
-/* Large Tablet (1024px - iPad Pro) */
-@media (max-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  
+.project-image {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 280px;
+  cursor: pointer;
+  background: var(--bg-secondary);
+  width: 100%;
+}
+
+.project-img-placeholder {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a; /* Background color for letterbox areas */
+}
+
+.project-img-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* ✅ CHANGED: Shows entire image */
+  object-position: center;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effect - zoom slightly */
+.project-card:hover .project-img-placeholder img {
+  transform: scale(1.05); /* Reduced from 1.1 to prevent cropping on zoom */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
   .project-image {
-    height: 350px;
+    height: 240px;
   }
 }
 
-/* Tablet Portrait (768px - iPad) */
+@media (max-width: 480px) {
+  .project-image {
+    height: 220px;
+  }
+}
+
+@media (max-width: 360px) {
+  .project-image {
+    height: 190px;
+  }
+}
+
+
+/* ===========================
+   MOBILE RESPONSIVE
+=========================== */
+
+/* Tablet (1024px) */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .project-image {
+    height: 260px;
+  }
+}
+
+/* Tablet Portrait (768px) */
 @media (max-width: 768px) {
   .projects-grid {
-    grid-template-columns: 1fr; /* Single column for mobile */
+    grid-template-columns: 1fr;
     gap: 1.5rem;
   }
   
   .project-image {
-    height: 300px; /* Smaller height for tablet */
+    height: 240px;
   }
   
   .project-details h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
   
   .project-overlay {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
   
   .filter-tabs {
@@ -1032,58 +1094,15 @@ body:hover .cursor-outline {
   }
   
   .filter-btn {
-    padding: 0.6rem 1.2rem;
+    padding: 0.7rem 1.4rem;
     font-size: 0.85rem;
   }
 }
 
-/* Large Phone (480px - iPhone 14 Pro Max, Samsung Galaxy S22+) */
+/* Mobile (480px) */
 @media (max-width: 480px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  
   .project-image {
-    height: 260px; /* Optimized for large phones */
-  }
-  
-  .project-details h3 {
-    font-size: 1.3rem;
-  }
-  
-  .project-details p {
-    font-size: 0.9rem;
-  }
-  
-  .project-overlay {
-    padding: 1.25rem;
-  }
-  
-  .project-category {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.7rem;
-  }
-  
-  .project-view {
-    font-size: 0.85rem;
-    padding: 0.6rem 1.2rem;
-  }
-  
-  .filter-tabs {
-    gap: 0.5rem;
-  }
-  
-  .filter-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-  }
-}
-
-/* Standard Phone (375px - iPhone 12/13/14, Samsung Galaxy S21) */
-@media (max-width: 390px) {
-  .project-image {
-    height: 240px; /* Perfect for standard phones */
+    height: 220px;
   }
   
   .project-details h3 {
@@ -1093,37 +1112,31 @@ body:hover .cursor-outline {
   .project-details p {
     font-size: 0.85rem;
   }
-}
-
-/* Small Phone (360px - Samsung Galaxy) */
-@media (max-width: 360px) {
-  .project-image {
-    height: 220px; /* Compact sizing */
-  }
-  
-  .project-details h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-  }
-  
-  .project-details p {
-    font-size: 0.8rem;
-  }
   
   .project-overlay {
     padding: 1rem;
   }
   
+  .project-category {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+  }
+  
   .project-view {
+    font-size: 0.85rem;
+    padding: 0.55rem 1.1rem;
+  }
+  
+  .filter-btn {
+    padding: 0.6rem 1.2rem;
     font-size: 0.8rem;
-    padding: 0.5rem 1rem;
   }
 }
 
-/* Extra Small Phone (320px - iPhone SE, older Android) */
-@media (max-width: 320px) {
+/* Small Phone (360px) */
+@media (max-width: 360px) {
   .project-image {
-    height: 200px; /* Smallest screens */
+    height: 190px;
   }
   
   .project-details h3 {
@@ -1132,39 +1145,36 @@ body:hover .cursor-outline {
   
   .project-details p {
     font-size: 0.75rem;
-    margin-bottom: 0.5rem;
+  }
+  
+  .project-overlay {
+    padding: 0.85rem;
+  }
+}
+
+/* Extra Small (320px) */
+@media (max-width: 320px) {
+  .project-image {
+    height: 180px;
   }
   
   .project-category {
     font-size: 0.65rem;
-    padding: 0.25rem 0.6rem;
   }
   
   .project-view {
     font-size: 0.75rem;
-    padding: 0.4rem 0.8rem;
-  }
-  
-  .filter-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.75rem;
+    padding: 0.45rem 0.9rem;
   }
 }
 
-/* Prevent image overflow on all devices */
-.project-img-placeholder img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-}
-
-/* Ensure smooth transitions on touch devices */
+/* Touch Devices - Always show overlay */
 @media (hover: none) and (pointer: coarse) {
-  .project-card:active .project-overlay {
+  .project-overlay {
     opacity: 1;
   }
   
-  .project-card:active .project-details {
+  .project-details {
     transform: translateY(0);
   }
 }
