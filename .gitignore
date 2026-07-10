@@ -1,0 +1,1 @@
+# Dependencies\nnode_modules/\n\n# Environment variables\n.env\n.env.local\n.env.*.local\n\n# OS files\n.DS_Store\nThumbs.db\n\n# IDE\n.vscode/\n.idea/\n*.swp\n*.swo\n*~\n\n# Build\ndist/\nbuild/\n.cache/\n\n# Logs\n*.log\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\n"
